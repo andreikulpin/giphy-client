@@ -1,10 +1,11 @@
 package com.example.giphy_client.di.components
 
-import com.example.giphy_client.di.modules.AppModule
+import com.example.giphy_client.di.modules.ApiModule
+import com.example.giphy_client.di.modules.ContextModule
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = arrayOf(ApiModule::class))
 @Singleton
 interface AppComponent {
     fun getMainActivityComponent(): MainActivityComponent

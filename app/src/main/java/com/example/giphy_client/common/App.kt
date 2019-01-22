@@ -3,7 +3,7 @@ package com.example.giphy_client.common
 import android.app.Application
 import com.example.giphy_client.di.components.AppComponent
 import com.example.giphy_client.di.components.DaggerAppComponent
-import com.example.giphy_client.di.modules.AppModule
+import com.example.giphy_client.di.modules.ContextModule
 
 class App : Application() {
     companion object {
@@ -17,7 +17,7 @@ class App : Application() {
         instance = this
 
         appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(applicationContext))
+            .contextModule(ContextModule(applicationContext))
             .build()
     }
 }
