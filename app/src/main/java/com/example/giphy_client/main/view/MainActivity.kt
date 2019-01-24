@@ -8,6 +8,7 @@ import com.example.giphy_client.base.BaseActivity
 import com.example.giphy_client.common.App
 import com.example.giphy_client.main.presentation.IMainView
 import com.example.giphy_client.main.presentation.MainPresenter
+import com.example.giphy_client.trending.view.TrendingFragment
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), IMainView {
@@ -30,5 +31,6 @@ class MainActivity : BaseActivity(), IMainView {
     }
 
     override fun showTrendingScreen() {
+        addFragment(TrendingFragment())
     }
 }
