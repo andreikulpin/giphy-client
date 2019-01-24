@@ -33,6 +33,10 @@ class TrendingFragment : BaseFragment(), ITrendingView {
     }
 
     override fun initView() {
+        swipeToRefresh.setOnRefreshListener {
+            presenter.onRefreshPull()
+        }
+
         adapter = GifsAdapter().apply {
             setListener(object : GifsAdapter.IEventListener {
                 override fun onItemClick(id: String) {
@@ -56,6 +60,10 @@ class TrendingFragment : BaseFragment(), ITrendingView {
 
     override fun addItems(items: List<GifListItem>) {
         adapter.addItems(items)
+    }
+
+    override fun setRefreshing(isRefreshing: Boolean) {
+        swipeToRefresh.isRefreshing = isRefreshing
     }
 
     override fun onDestroy() {

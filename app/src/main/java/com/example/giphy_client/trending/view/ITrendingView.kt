@@ -1,9 +1,6 @@
 package com.example.giphy_client.trending.view
 
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
-import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import com.arellomobile.mvp.viewstate.strategy.*
 import com.example.giphy_client.base.IBaseView
 import com.example.giphy_client.trending.presenter.GifListItem
 
@@ -13,4 +10,7 @@ interface ITrendingView : IBaseView {
     fun setItems(items: List<GifListItem>)
 
     fun addItems(items: List<GifListItem>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun setRefreshing(isRefreshing: Boolean)
 }

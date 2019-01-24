@@ -26,7 +26,10 @@ class TrendingPresenter @Inject constructor(
     fun loadData() {
         interactor.getTrending(offset, LIMIT)
             .doOnSubscribe { isLoading = true }
-            .doAfterTerminate { isLoading = false }
+            .doAfterTerminate {
+                isLoading = false
+                viewState.setRefreshing(false)
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
                 offset += response.pagination.count
@@ -75,6 +78,12 @@ class TrendingPresenter @Inject constructor(
 
             }, {})
             .connect()
+    }
+
+    fun onRefreshPull() {
+        offset = 0
+        viewState.setRefreshing(true)
+        loadData()
     }
 
     fun onItemClick(itemId: String) {
