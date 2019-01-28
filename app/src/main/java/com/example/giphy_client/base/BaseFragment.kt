@@ -18,5 +18,5 @@ abstract class BaseFragment : MvpAppCompatFragment(), IBaseView {
         initView()
     }
 
-    protected abstract fun initView()
+    protected open fun initView() {}
 }

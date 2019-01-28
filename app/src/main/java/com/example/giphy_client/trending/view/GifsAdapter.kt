@@ -49,7 +49,7 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifViewHolder>() {
                     .into(imageView)
 
                 setOnClickListener {
-
+                    listener?.onItemClick(gif.id)
                 }
             }
         }

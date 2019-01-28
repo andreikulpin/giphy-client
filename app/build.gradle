@@ -15,8 +15,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "GIPHY_ENDPOINT", '"https://api.giphy.com/v1/"'
+        buildConfigField "String", "GIPHY_API_ENDPOINT", '"https://api.giphy.com/v1/"'
         buildConfigField "String", "GIPHY_API_KEY", '"cbjSLEVn1U1Jz4jkT0Nwbg9b3DdBw3Lb"'
+        buildConfigField "String", "GIPHY_BASE_URL", '"https://giphy.com/"'
     }
 
     buildTypes {

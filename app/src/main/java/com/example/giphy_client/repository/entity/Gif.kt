@@ -20,7 +20,7 @@ data class Gif(
     val trendingDatetime: String,
     val type: String,
     val url: String,
-    val user: User,
+    val user: User?,
     val username: String
 ) {
     data class Analytics(

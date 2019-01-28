@@ -36,9 +36,7 @@ class GifsList @JvmOverloads constructor(
                     {
                         emitter.onNext(Any())
                     }
-
                 }
-
             }
         }
 

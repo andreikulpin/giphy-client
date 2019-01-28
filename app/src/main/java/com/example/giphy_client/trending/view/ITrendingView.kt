@@ -13,4 +13,7 @@ interface ITrendingView : IBaseView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun setRefreshing(isRefreshing: Boolean)
+
+    @StateStrategyType(SkipStrategy::class)
+    fun goToInfoScreen(id: String)
 }

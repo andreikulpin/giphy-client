@@ -1,7 +1,6 @@
 package com.example.giphy_client.di.components
 
 import com.example.giphy_client.di.modules.ApiModule
-import com.example.giphy_client.di.modules.ContextModule
 import dagger.Component
 import javax.inject.Singleton
 

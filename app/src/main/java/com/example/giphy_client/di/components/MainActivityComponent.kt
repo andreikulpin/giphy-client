@@ -1,5 +1,6 @@
 package com.example.giphy_client.di.components
 
+import com.example.giphy_client.di.modules.GifInfoModule
 import com.example.giphy_client.di.modules.MainActivityModule
 import com.example.giphy_client.di.scopes.MainActivityScope
 import com.example.giphy_client.main.view.MainActivity
@@ -12,4 +13,6 @@ interface MainActivityComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(fragment: TrendingFragment)
+
+    fun getGifInfoComponent(module: GifInfoModule): GifInfoComponent
 }

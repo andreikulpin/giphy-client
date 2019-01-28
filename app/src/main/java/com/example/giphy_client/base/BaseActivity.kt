@@ -15,9 +15,9 @@ abstract class BaseActivity : MvpAppCompatActivity() {
 
     abstract fun setUpView()
 
-    protected fun addFragment(fragment: BaseFragment) {
+    fun addFragment(fragment: BaseFragment) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.container, fragment, fragment::class.java.name)
+            .replace(R.id.container, fragment, fragment::class.java.name)
             .addToBackStack(null)
             .commit()
     }

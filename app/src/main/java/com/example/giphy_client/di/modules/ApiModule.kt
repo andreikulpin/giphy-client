@@ -31,7 +31,7 @@ class ApiModule {
     @Provides
     @Singleton
     @BaseApiUrl
-    fun provideApiUrl(): String = BuildConfig.GIPHY_ENDPOINT
+    fun provideApiUrl(): String = BuildConfig.GIPHY_API_ENDPOINT
 
     @Provides
     @Singleton

@@ -4,8 +4,10 @@ import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.giphy_client.R
+import com.example.giphy_client.base.BaseActivity
 import com.example.giphy_client.base.BaseFragment
 import com.example.giphy_client.common.App
+import com.example.giphy_client.info.view.GifInfoFragment
 import com.example.giphy_client.trending.presenter.GifListItem
 import com.example.giphy_client.trending.presenter.TrendingPresenter
 import io.reactivex.disposables.Disposable
@@ -60,6 +62,12 @@ class TrendingFragment : BaseFragment(), ITrendingView {
 
     override fun addItems(items: List<GifListItem>) {
         adapter.addItems(items)
+    }
+
+    override fun goToInfoScreen(id: String) {
+        (activity as BaseActivity).addFragment(
+            GifInfoFragment.getInstance(id)
+        )
     }
 
     override fun setRefreshing(isRefreshing: Boolean) {
