@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.example.giphy_client.R
 
-abstract class BaseActivity : MvpAppCompatActivity() {
+abstract class BaseActivity : MvpAppCompatActivity(), IBaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
@@ -29,5 +29,12 @@ abstract class BaseActivity : MvpAppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun showErrorMessage(message: String) {
+    }
+
+    override fun goBack() {
+        onBackPressed()
     }
 }

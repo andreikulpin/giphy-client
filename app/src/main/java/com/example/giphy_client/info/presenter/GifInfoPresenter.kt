@@ -30,7 +30,11 @@ class GifInfoPresenter @Inject constructor(
             .subscribe({ info ->
                 this.info = info
                 viewState.showInfo(info)
-        }, {})
+        }, { exception ->
+                exception.message?.let { message ->
+                    viewState.showErrorMessage(message)
+                }
+            })
             .connect()
     }
 
@@ -38,6 +42,14 @@ class GifInfoPresenter @Inject constructor(
         info?.userUrl?.let { url ->
             viewState.openUrl(url)
         }
+    }
+
+    fun onErrorDialogPositiveClick() {
+        loadData()
+    }
+
+    fun onErrorDialogNegativeClick() {
+        viewState.goBack()
     }
 
     companion object {

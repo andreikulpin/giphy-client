@@ -67,6 +67,14 @@ class GifInfoFragment : BaseFragment(), IGifInfoView {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
 
+    override fun onPositiveButtonClick() {
+        presenter.onErrorDialogPositiveClick()
+    }
+
+    override fun onNegativeButtonClick() {
+        presenter.onErrorDialogNegativeClick()
+    }
+
     companion object {
         private const val GIF_ID_KEY = "GIF_ID_KEY"
 

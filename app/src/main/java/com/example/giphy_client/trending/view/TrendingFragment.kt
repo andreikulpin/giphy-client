@@ -74,6 +74,14 @@ class TrendingFragment : BaseFragment(), ITrendingView {
         swipeToRefresh.isRefreshing = isRefreshing
     }
 
+    override fun onPositiveButtonClick() {
+        presenter.onErrorDialogPositiveClick()
+    }
+
+    override fun onNegativeButtonClick() {
+        presenter.onErrorDialogNegativeClick()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         pagingSubscription?.dispose()

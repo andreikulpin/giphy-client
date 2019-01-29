@@ -26,7 +26,10 @@ class TrendingPresenter @Inject constructor(
     fun loadData() {
         interactor.getTrending(offset, LIMIT)
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { isLoading = true }
+            .doOnSubscribe {
+                isLoading = true
+                viewState.setRefreshing(true)
+            }
             .doAfterTerminate {
                 isLoading = false
                 viewState.setRefreshing(false)
@@ -47,7 +50,11 @@ class TrendingPresenter @Inject constructor(
                 }
                 viewState.setItems(items)
 
-            }, {})
+            }, { exception ->
+                exception.message?.let { message ->
+                    viewState.showErrorMessage(message)
+                }
+            })
             .connect()
     }
 
@@ -88,5 +95,13 @@ class TrendingPresenter @Inject constructor(
 
     fun onItemClick(itemId: String) {
         viewState.goToInfoScreen(itemId)
+    }
+
+    fun onErrorDialogPositiveClick() {
+        loadData()
+    }
+
+    fun onErrorDialogNegativeClick() {
+        viewState.goBack()
     }
 }
