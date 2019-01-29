@@ -9,4 +9,7 @@ import com.example.giphy_client.base.IBaseView
 interface IMainView : IBaseView {
     @StateStrategyType(SkipStrategy::class)
     fun showTrendingScreen()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showGifInfoScreen(id: String)
 }

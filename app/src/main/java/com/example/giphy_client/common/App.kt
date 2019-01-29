@@ -3,6 +3,7 @@ package com.example.giphy_client.common
 import android.app.Application
 import com.example.giphy_client.di.components.AppComponent
 import com.example.giphy_client.di.components.DaggerAppComponent
+import com.example.giphy_client.di.components.MainActivityComponent
 import com.example.giphy_client.di.modules.ContextModule
 
 class App : Application() {
@@ -11,6 +12,7 @@ class App : Application() {
     }
 
     lateinit var appComponent: AppComponent
+    lateinit var mainActivityComponent: MainActivityComponent
 
     override fun onCreate() {
         super.onCreate()

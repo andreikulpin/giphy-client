@@ -33,9 +33,10 @@ class GifInfoFragment : BaseFragment(), IGifInfoView {
     override fun getLayoutId() = R.layout.fragment_gif_info
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.instance.appComponent
-            .getMainActivityComponent()
-            .getGifInfoComponent(GifInfoModule(arguments?.getString(GIF_ID_KEY, "") ?: ""))
+        val gifId = arguments?.getString(GIF_ID_KEY, GifInfoPresenter.UNKNOWN_ID)
+            ?: GifInfoPresenter.UNKNOWN_ID
+        App.instance.mainActivityComponent
+            .getGifInfoComponent(GifInfoModule(gifId))
             .inject(this)
         super.onCreate(savedInstanceState)
     }

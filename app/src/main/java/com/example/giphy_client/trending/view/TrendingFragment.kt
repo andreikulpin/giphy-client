@@ -29,7 +29,7 @@ class TrendingFragment : BaseFragment(), ITrendingView {
     override fun getLayoutId() = R.layout.fragment_trendings
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.instance.appComponent.getMainActivityComponent()
+        App.instance.mainActivityComponent
             .inject(this)
         super.onCreate(savedInstanceState)
     }

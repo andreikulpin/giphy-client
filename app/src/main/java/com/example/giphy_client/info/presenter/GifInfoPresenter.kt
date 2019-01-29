@@ -39,4 +39,8 @@ class GifInfoPresenter @Inject constructor(
             viewState.openUrl(url)
         }
     }
+
+    companion object {
+        const val UNKNOWN_ID = ""
+    }
 }
