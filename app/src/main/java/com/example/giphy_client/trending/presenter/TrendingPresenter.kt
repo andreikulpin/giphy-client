@@ -2,6 +2,7 @@ package com.example.giphy_client.trending.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.example.giphy_client.base.BasePresenter
+import com.example.giphy_client.mapper.GifListItemMapper
 import com.example.giphy_client.trending.interactor.TrendingInteractor
 import com.example.giphy_client.trending.view.ITrendingView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,7 +10,8 @@ import javax.inject.Inject
 
 @InjectViewState
 class TrendingPresenter @Inject constructor(
-    private val interactor: TrendingInteractor
+    private val interactor: TrendingInteractor,
+    private val gifListItemMapper: GifListItemMapper
 ) : BasePresenter<ITrendingView>() {
     companion object {
         private const val LIMIT = 50
@@ -34,27 +36,14 @@ class TrendingPresenter @Inject constructor(
                 isLoading = false
                 viewState.setRefreshing(false)
             }
-            .subscribe({ response ->
-                offset += response.pagination.count
-
-                val items = ArrayList<GifListItem>().also { items ->
-                    response.data.forEach { gif ->
-                        items.add(
-                            GifListItem(
-                                id = gif.id,
-                                title = gif.title,
-                                url = gif.images.downsized.url
-                            )
-                        )
-                    }
-                }
-                viewState.setItems(items)
-
-            }, { exception ->
+            .doOnSuccess { response -> offset += response.pagination.count }
+            .map(gifListItemMapper::map)
+            .subscribe(viewState::setItems)
+            { exception ->
                 exception.message?.let { message ->
                     viewState.showErrorMessage(message)
                 }
-            })
+            }
             .connect()
     }
 
@@ -67,23 +56,9 @@ class TrendingPresenter @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading = true }
             .doAfterTerminate { isLoading = false }
-            .subscribe({ response ->
-                offset += response.pagination.count
-
-                val items = ArrayList<GifListItem>().also { items ->
-                    response.data.forEach { gif ->
-                        items.add(
-                            GifListItem(
-                                id = gif.id,
-                                title = gif.title,
-                                url = gif.images.downsized.url
-                            )
-                        )
-                    }
-                }
-                viewState.addItems(items)
-
-            }, {})
+            .doOnSuccess { response -> offset += response.pagination.count }
+            .map(gifListItemMapper::map)
+            .subscribe(viewState::addItems) {}
             .connect()
     }
 
